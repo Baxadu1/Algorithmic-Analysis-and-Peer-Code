@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Benchmark {
-    private static final int[] SIZES = {100, 1000, 10000, 100000};
+    private static final int[] SIZES = {100, 1000, 10000, 100000,100000};
     private static final int RUNS = 5; // average over multiple runs
     private static final Random rand = new Random();
 
