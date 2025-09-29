@@ -4,6 +4,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         System.out.println("STUDENT A CODE:    ");
+
         int[] arr1 = {5, 2, 9, 1, 10, 6};
         algorithms_student_a.insertionSort(arr1);
         System.out.print("insertion sort: ");
