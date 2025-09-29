@@ -3,52 +3,51 @@ public class MaxHeap {
     private int size;
 
     public MaxHeap(int capacity) {
-        if (capacity <= 0) throw new IllegalArgumentException("Capacity must be > 0");
         heap = new int[capacity];
         size = 0;
         Metrics.incAllocations();
     }
 
-    public void insert(int val) {
-        if (size == heap.length) throw new RuntimeException("Heap is full");
-        heap[size] = val;
+    public void insert(int key) {
+        if (size == heap.length) throw new IllegalStateException("Heap full");
+        heap[size] = key;
         size++;
-        increaseKey(size - 1, val);
-    }
-
-    public void increaseKey(int index, int newValue) {
-        if (newValue < heap[index]) throw new IllegalArgumentException("New value is smaller");
-        heap[index] = newValue;
-
-        while (index > 0 && heap[parent(index)] < heap[index]) {
-            swap(index, parent(index));
-            index = parent(index);
-        }
+        heapifyUp(size - 1);
     }
 
     public int extractMax() {
-        if (size <= 0) throw new RuntimeException("Heap is empty");
+        if (size == 0) throw new IllegalStateException("Heap empty");
         int max = heap[0];
         heap[0] = heap[size - 1];
         size--;
-        maxHeapify(0);
+        heapifyDown(0);
         return max;
     }
 
-    private void maxHeapify(int i) {
+    public void increaseKey(int index, int newValue) {
+        if (index >= size || heap[index] >= newValue) throw new IllegalArgumentException();
+        heap[index] = newValue;
+        heapifyUp(index);
+    }
+
+    private void heapifyUp(int i) {
+        while (i > 0 && heap[parent(i)] < heap[i]) {
+            swap(i, parent(i));
+            i = parent(i);
+        }
+    }
+
+    private void heapifyDown(int i) {
+        int largest = i;
         int left = left(i);
         int right = right(i);
-        int largest = i;
 
-        if (left < size && heap[left] > heap[largest]) {
-            largest = left;
-        }
-        if (right < size && heap[right] > heap[largest]) {
-            largest = right;
-        }
+        if (left < size && heap[left] > heap[largest]) largest = left;
+        if (right < size && heap[right] > heap[largest]) largest = right;
+
         if (largest != i) {
             swap(i, largest);
-            maxHeapify(largest);
+            heapifyDown(largest);
         }
     }
 

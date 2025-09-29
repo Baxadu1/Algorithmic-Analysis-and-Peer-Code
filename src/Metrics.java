@@ -2,31 +2,27 @@ public class Metrics {
     private static long comparisons = 0;
     private static long swaps = 0;
     private static long allocations = 0;
-    private static long arrayAccesses = 0;
     private static long recursionDepth = 0;
-    private static long currentRecursion = 0;
 
-    public static void reset() {
-        comparisons = swaps = allocations = arrayAccesses = recursionDepth = currentRecursion = 0;
-    }
-
+    //Increment methods
     public static void incComparisons() { comparisons++; }
     public static void incSwaps() { swaps++; }
     public static void incAllocations() { allocations++; }
-    public static void incArrayAccesses() { arrayAccesses++; }
 
-    public static void enterRecursion() {
-        currentRecursion++;
-        recursionDepth = Math.max(recursionDepth, currentRecursion);
+    public static void enterRecursion() { recursionDepth++; }
+    public static void leaveRecursion() { recursionDepth--; }
+
+    //Reset
+    public static void reset() {
+        comparisons = 0;
+        swaps = 0;
+        allocations = 0;
+        recursionDepth = 0;
     }
 
-    public static void leaveRecursion() { currentRecursion--; }
-
-    public static void print() {
-        System.out.println("Comparisons: " + comparisons);
-        System.out.println("Swaps: " + swaps);
-        System.out.println("Array Accesses: " + arrayAccesses);
-        System.out.println("Allocations: " + allocations);
-        System.out.println("Max Recursion Depth: " + recursionDepth);
-    }
+    //Getters
+    public static long getComparisons() { return comparisons; }
+    public static long getSwaps() { return swaps; }
+    public static long getAllocations() { return allocations; }
+    public static long getRecursionDepth() { return recursionDepth; }
 }
