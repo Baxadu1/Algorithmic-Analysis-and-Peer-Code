@@ -12,28 +12,28 @@ public class Benchmark {
         for (int n : SIZES) {
             int[] baseArray = generateArray(n);
 
-            // Selection Sort
+
             runBenchmark("Selection Sort", n, baseArray.clone(), (arr) -> SelectionSort.sort(arr));
 
-            // Heap Sort
+
             runBenchmark("Heap Sort", n, baseArray.clone(), (arr) -> HeapSort.sort(arr));
 
-            // Kadane’s Algorithm (O(n), only comparisons matter)
+
             runBenchmark("Kadane", n, baseArray.clone(), (arr) -> Kadane.maxSubarray(arr));
 
-            // Max-Heap operations (build + extract)
+
             runHeapBenchmark("MaxHeap", n, baseArray.clone());
         }
     }
 
-    // Generate random array
+
     private static int[] generateArray(int n) {
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) arr[i] = rand.nextInt(1000000);
         return arr;
     }
 
-    // Generic benchmark runner
+
     private static void runBenchmark(String name, int n, int[] arr, SortAlgorithm algo) {
         long totalTime = 0;
         long comparisons = 0;
@@ -59,7 +59,7 @@ public class Benchmark {
                 swaps / RUNS);
     }
 
-    // Special benchmark for MaxHeap
+
     private static void runHeapBenchmark(String name, int n, int[] arr) {
         long totalTime = 0;
 
@@ -81,7 +81,7 @@ public class Benchmark {
                 "-", "-");
     }
 
-    // Functional interface for sorting algorithms
+
     @FunctionalInterface
     interface SortAlgorithm {
         void run(int[] arr);

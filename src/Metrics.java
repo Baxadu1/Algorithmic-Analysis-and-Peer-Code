@@ -4,7 +4,7 @@ public class Metrics {
     private static long allocations = 0;
     private static long recursionDepth = 0;
 
-    // --- Increment methods ---
+    //Increment methods
     public static void incComparisons() { comparisons++; }
     public static void incSwaps() { swaps++; }
     public static void incAllocations() { allocations++; }
@@ -12,7 +12,7 @@ public class Metrics {
     public static void enterRecursion() { recursionDepth++; }
     public static void leaveRecursion() { recursionDepth--; }
 
-    // --- Reset ---
+    //Reset
     public static void reset() {
         comparisons = 0;
         swaps = 0;
@@ -20,7 +20,7 @@ public class Metrics {
         recursionDepth = 0;
     }
 
-    // --- Getters ---
+    //Getters
     public static long getComparisons() { return comparisons; }
     public static long getSwaps() { return swaps; }
     public static long getAllocations() { return allocations; }
