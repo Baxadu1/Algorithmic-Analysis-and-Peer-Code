@@ -2,12 +2,12 @@ public class HeapSort {
     public static void sort(int[] arr) {
         int n = arr.length;
 
-        // Build max heap (bottom-up)
+
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(arr, n, i);
         }
 
-        // Extract elements
+
         for (int i = n - 1; i > 0; i--) {
             swap(arr, 0, i);
             heapify(arr, i, 0);

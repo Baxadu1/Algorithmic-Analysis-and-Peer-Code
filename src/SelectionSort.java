@@ -12,7 +12,7 @@ public class SelectionSort {
                     swapped = true;
                 }
             }
-            if (!swapped) break; // early termination
+            if (!swapped) break;
             swap(arr, i, minIndex);
         }
     }
